@@ -1,0 +1,10 @@
+MANIFEST
+Makefile.PL
+README
+FreeText.pm
+FreeText/LexicalAnalysis.pm
+FreeText/LexicalAnalysis/Heuristics.pm
+FreeText/LexicalAnalysis/Stem.pm
+FreeText/LexicalAnalysis/Stop.pm
+FreeText/LexicalAnalysis/Tokenize.pm
+t/test.t

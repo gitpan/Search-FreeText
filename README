@@ -1,0 +1,67 @@
+README for Search::FreeText
+
+A Perl implementation of free text searching and indexing for
+medium-to-large text corpuses.  Based on the BM25 weighting scheme
+described in Robertson, S. E., Walker, S., Beaulieu, M. M., Gatford,
+M., and Payne, A. (1995). Okapi at TREC-4, in NIST Special Publication
+500-236, the Fourth Text Retrieval Conference (TREC-4), pages 73-96.
+
+This module is generic: it allows a user-specified document key,
+which either be a filename, a URL, or a database record, to be 
+attached to each individual file. 
+
+
+SYNOPSIS
+
+my $text = new Search::FreeText(-db => ['DB_File', "stories.db"]);
+
+$text->open_index();
+$text->clear_index();
+$text->index_document(1, "Hello world");
+$text->index_document(2, "World in motion");
+$text->index_document(3, "Cruel crazy beautiful world");
+$text->index_document(4, "Hey crazy");
+$text->close_index();
+
+... go away and do something else ...
+
+$text->open_index();
+foreach ($text->search("Crazy", 10)) {
+    print "$_->[0], $_->[1]\n";
+};
+$text->close_index();
+
+
+DEPENDENCIES
+
+DB_File - or you can use an equivalent if you like
+Lingua::Stem
+
+
+INSTALLATION
+
+perl Makefile.PL
+make
+make test
+make install
+
+
+AUTHOR AND COPYRIGHT
+
+Stuart Watt <S.N.K.Watt@rgu.ac.uk>.
+
+Copyright (c) 2003. The Robert Gordon University. All rights reserved.
+
+This program is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+Version 0.05 - 18th March 2003
+
+
+TO DO
+
+*  Other indexing systems besides BM25, e.g., LSA, vector-space. 
+*  Allow people to remove documents as well as index them
+*  Make locking for indexing something to handle in this module 
+   instead of users responsibility
+*  And many many more
